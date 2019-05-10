@@ -1,0 +1,32 @@
+---
+# Stolen from / inspired by https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/
+- name: Check if wordpress is installed
+  stat:
+    path: /var/www/wordpress/wordpress/license.txt
+  register: stat_result
+
+- name: Download WordPress
+  get_url: 
+    url=https://wordpress.org/latest.tar.gz 
+    dest=/tmp/wordpress.tar.gz
+    validate_certs=no
+  when: stat_result.stat.exists == False
+
+
+- name: Create wordpress dir
+  file:
+    path: "{{ wordpress_dir }}"
+    state: directory
+    owner: root
+    group: root
+  when: stat_result.stat.exists == False
+
+- name: Extract WordPress
+  unarchive: src=/tmp/wordpress.tar.gz dest="{{ wordpress_dir }}" remote_src=yes
+  become: yes
+  when: stat_result.stat.exists == False
+
+- name: Parse config file
+  template:
+    src: wp-config.php.template
+    dest: "{{ wordpress_dir}}/wordpress/wp-config.php"

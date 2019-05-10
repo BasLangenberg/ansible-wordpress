@@ -1,0 +1,6 @@
+---
+# vars file for baslangenberg.wordpress
+wordpress_dir: /var/www/wordpress
+wp_mysql_db: wordpress
+wp_mysql_user: wordpress
+wp_mysql_password: wordpress
