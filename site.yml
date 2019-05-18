@@ -1,9 +1,15 @@
-- hosts: all
+- hosts: wordpress-db
   become: true
   vars_files:
     - vars/main.yml
   roles:
     - geerlingguy.mysql
+
+- hosts: wordpress-app
+  become: true
+  vars_files:
+    - vars/main.yml
+  roles:
     - geerlingguy.apache
     - geerlingguy.php
     - baslangenberg.wordpress

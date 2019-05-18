@@ -15,6 +15,7 @@ apache_vhosts:
 wp_mysql_db: wordpress
 wp_mysql_user: wordpress
 wp_mysql_password: similarly-secure-password
+wp_mysql_host: 134.209.196.241
 php_packages:
   - php
   - php-cli

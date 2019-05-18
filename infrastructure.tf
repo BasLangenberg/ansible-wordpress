@@ -9,9 +9,19 @@ provider "digitalocean" {
 }
 
 # Create Kubernetes first master
-resource "digitalocean_droplet" "Wordpress" {
+resource "digitalocean_droplet" "Wordpress-DB" {
   image = "ubuntu-18-04-x64"
-  name = "Wordpress"
+  name = "Wordpress-db"
+  region = "ams3"
+  size = "2gb"
+  ssh_keys = [
+    "${var.ssh_fingerprint}"
+  ]
+}
+
+resource "digitalocean_droplet" "Wordpress-App" {
+  image = "ubuntu-18-04-x64"
+  name = "Wordpress-app"
   region = "ams3"
   size = "2gb"
   ssh_keys = [

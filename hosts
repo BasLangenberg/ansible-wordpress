@@ -1,2 +1,5 @@
-[wordpress]
-178.62.255.190 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+[wordpress-app]
+188.166.121.246 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+
+[wordpress-db]
+134.209.196.241 ansible_user=root ansible_python_interpreter=/usr/bin/python3
